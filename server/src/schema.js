@@ -1,4 +1,4 @@
-const gql = require('graphql-tag');
+const gql = require("graphql-tag");
 
 const typeDefs = gql`
   type Query {
@@ -11,8 +11,18 @@ const typeDefs = gql`
   }
 
   type Mutation {
-  incrementTrackViews(id: ID!):
+    incrementTrackViews(id: ID!): incrementTrackViewsResponse
+  }
 
+  type incrementTrackViewsResponse {
+    "Similar to HTTP status code , represents the status of the mutation"
+    code: Int!
+    "Indicates wheater the mutation was successful"
+    success: Boolean
+    "Human-readable message of the UI"
+    message: String!
+    "Newly updated track after a successful mutation"
+    track: Track
   }
 
   "A track is a group of Modules that teaches about a specific topic"
