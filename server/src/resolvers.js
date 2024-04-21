@@ -19,14 +19,23 @@ const resolvers = {
   Mutation: {
     // increments a track's numberOfViews property
     incrementTrackViews: async (_, { id }, { dataSources }) => {
-      const track = await dataSources.trackAPI.incrementTrackViews(id);
+      try {
+        const track = await dataSources.trackAPI.incrementTrackViews(id);
 
-      return {
-        code: 200,
-        success: true,
-        message: `Successfully increment number of views for track ${id}`,
-        track,
-      };
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully increment number of views for track ${id}`,
+          track,
+        };
+      } catch {
+        return {
+          code: 500,
+          success: false,
+          message: `Failed to increment number of views for track ${id}`,
+          track: null,
+        };
+      }
     },
   },
 
