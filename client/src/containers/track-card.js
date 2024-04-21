@@ -19,6 +19,7 @@ const INCREMENT_TRACK_VIEWS = gql`
     }
   }
 `;
+
 /**
  * Track Card component renders basic info in a card format
  * for each track populating the tracks grid homepage.
@@ -26,7 +27,7 @@ const INCREMENT_TRACK_VIEWS = gql`
 const TrackCard = ({ track }) => {
   const { title, thumbnail, author, length, modulesCount, id } = track;
 
-const [incrementTrackViews ] =  useMutation(INCREMENT_TRACK_VIEWS, {
+  const [incrementTrackViews] = useMutation(INCREMENT_TRACK_VIEWS, {
     variables: { incrementTrackViewsId: id },
     // to observe what the mutation response returns
     onCompleted: (data) => {
@@ -35,9 +36,7 @@ const [incrementTrackViews ] =  useMutation(INCREMENT_TRACK_VIEWS, {
   });
 
   return (
-    <CardContainer to={`/track/${id}`}
-    onClick={incrementTrackViews}
-    >
+    <CardContainer to={`/track/${id}`} onClick={incrementTrackViews}>
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail} alt={title} />
