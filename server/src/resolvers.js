@@ -28,11 +28,11 @@ const resolvers = {
           message: `Successfully increment number of views for track ${id}`,
           track,
         };
-      } catch {
+      } catch (err) {
         return {
-          code: 500,
+          code: err.extensions.response.status,
           success: false,
-          message: `Failed to increment number of views for track ${id}`,
+          message: err.extensions.response.body,
           track: null,
         };
       }
