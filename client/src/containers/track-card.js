@@ -5,6 +5,8 @@ import { humanReadableTimeFromSeconds } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 import {gql, useMutation} from '@apollo/client';
 
+
+// Mutation to increment trac's number of views
 const INCREMENT_TRACK_VIEW = gql`
   mutation IncrementTrackViews($incrementTrackViewsId: ID!) {
     incrementTrackViews(id: $incrementTrackViewsId) {
